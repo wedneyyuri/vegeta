@@ -94,6 +94,8 @@ func (m *Metrics) Close() {
 	m.Latencies.P50 = m.Latencies.Quantile(0.50)
 	m.Latencies.P95 = m.Latencies.Quantile(0.95)
 	m.Latencies.P99 = m.Latencies.Quantile(0.99)
+	m.Latencies.P999 = m.Latencies.Quantile(0.999)
+	m.Latencies.P9999 = m.Latencies.Quantile(0.9999)
 }
 
 func (m *Metrics) init() {
@@ -122,6 +124,10 @@ type LatencyMetrics struct {
 	P95 time.Duration `json:"95th"`
 	// P99 is the 99th percentile request latency.
 	P99 time.Duration `json:"99th"`
+	// P999 is the 99.9th percentile request latency.
+	P999 time.Duration `json:"99.9th"`
+	// P9999 is the 99.99th percentile request latency.
+	P9999 time.Duration `json:"99.99th"`
 	// Max is the maximum observed request latency.
 	Max time.Duration `json:"max"`
 
